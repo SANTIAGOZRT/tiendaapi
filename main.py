@@ -8,4 +8,4 @@ app.include_router(ruta_usuarios)
 
 @app.get("/")
 def read_root():
-    return {"mensaje": "Servidor FastAPI funcionando correctamente"}
+    return {"mensaje": "Servidor de Usuarios en funcionamiento"}
