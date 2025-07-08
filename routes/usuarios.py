@@ -70,5 +70,4 @@ def eliminar_usuario(cedula: str):
     
     return {"mensaje": "Usuario eliminado exitosamente"}
 
-# Registrar el router en la app
-app.include_router(ruta_usuarios)
+
