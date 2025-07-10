@@ -4,23 +4,25 @@ from routes.usuarios import ruta_usuarios
 
 app = FastAPI()
 
-# Orígenes permitidos
+# 🌐 Orígenes permitidos para CORS (ajusta según tu entorno)
 origins = [
-    "https://tiendaapi-k6cj.onrender.com",
-    # puedes añadir más como "http://localhost:4200" para desarrollo
+    "http://localhost:4200",              # Para desarrollo local de Angular
+    "https://tiendaapi-k6cj.onrender.com", # Producción en Render
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,          # define orígenes explícitamente (no usar ["*"] si allow_credentials=True)
-    allow_credentials=True,         # si usas cookies o cabeceras de autenticación
-    allow_methods=["*"],            # permite todos los métodos HTTP (GET, POST, PUT, DELETE...)
-    allow_headers=["*"],            # permite cabeceras personalizadas
+    allow_origins=origins,          # Lista de orígenes permitidos
+    allow_credentials=True,
+    allow_methods=["*"],            # Permite GET, POST, PUT, DELETE, OPTIONS...
+    allow_headers=["*"],            # Permite todas las cabeceras que envíe el frontend
 )
 
+# Incluir las rutas del router
 app.include_router(ruta_usuarios)
 
 @app.get("/")
 def read_root():
     return {"mensaje": "Servidor de Usuarios en funcionamiento"}
+
 
