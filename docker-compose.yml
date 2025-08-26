@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  tiendaapi:
+    build: .
+    container_name: tiendaapi
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URL=mongodb+srv://santiagodata:24052005@cluster0.2i6l1tx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - MONGO_DB=tienda
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:6
+    container_name: notas_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
